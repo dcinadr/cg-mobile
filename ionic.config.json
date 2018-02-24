@@ -1,0 +1,8 @@
+{
+  "name": "cg-mobile",
+  "app_id": "4ff61a74",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
