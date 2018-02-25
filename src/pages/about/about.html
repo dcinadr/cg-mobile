@@ -7,15 +7,18 @@
 </ion-header>
 
 <ion-content padding>
+  <div>
+    <span style="font-size:.8em">Last Updated: 2/25/2018 14:15 PST</span>
+  </div>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let coin of coins">
       <ion-grid>
         <ion-row justify-content-center align-items-center style="height:100%">
           <ion-col col-8>
             <h2>
-              <b>Bitcoin</b>
+              <b>{{coin.name}}</b>
             </h2>
-            <h3>$9,820.29</h3>
+            <h3>${{coin.price_usd}}</h3>
           </ion-col>
           <ion-col col-4 >
             <ion-grid >
@@ -24,13 +27,43 @@
                   <ion-icon name="trending-up" color="secondary"></ion-icon>
                 </ion-col>
                 <ion-col style="padding:0px;">
-                  <p style="color:#32db64">1.23%</p>
+                  <p style="color:#32db64">{{coin.percent_change_24h}}%</p>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col style="padding:0px;"></ion-col>
                 <ion-col style="padding:0px;">
-                  <p style="color:#32db64">+112.78</p>
+                  <p style="color:#32db64">{{coin.point_change_24h_usd}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-grid>
+        <ion-row justify-content-center align-items-center style="height:100%">
+          <ion-col col-8>
+            <h2>
+              <b>Ethereum</b>
+            </h2>
+            <h3>$845.86</h3>
+          </ion-col>
+          <ion-col col-4>
+            <ion-grid>
+              <ion-row>
+                <ion-col style="padding:0px;">
+                  <ion-icon name="trending-down" color="danger"></ion-icon>
+                </ion-col>
+                <ion-col style="padding:0px;">
+                  <p style="color:#f53d3d">-0.44%</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col style="padding:0px;"></ion-col>
+                <ion-col style="padding:0px;">
+                  <p style="color:#f53d3d">-10.78</p>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -39,16 +72,34 @@
       </ion-grid>
     </ion-item>
     <ion-item>
-      <h2>
-        <b>Ethereum</b>
-      </h2>
-      <h3>$845.86</h3>
-    </ion-item>
-    <ion-item>
-      <h2>
-        <b>Ripple</b>
-      </h2>
-      <h3>$0.95</h3>
-    </ion-item>
+      <ion-grid>
+        <ion-row justify-content-center align-items-center style="height:100%">
+          <ion-col col-8>
+            <h2>
+              <b>Ripple</b>
+            </h2>
+            <h3>$0.95</h3>
+          </ion-col>
+          <ion-col col-4>
+            <ion-grid>
+              <ion-row>
+                <ion-col style="padding:0px;">
+                  <ion-icon name="trending-up" color="secondary"></ion-icon>
+                </ion-col>
+                <ion-col style="padding:0px;">
+                  <p style="color:#32db64">9.12%</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col style="padding:0px;"></ion-col>
+                <ion-col style="padding:0px;">
+                  <p style="color:#32db64">+0.08</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item> -->
   </ion-list>
 </ion-content>
