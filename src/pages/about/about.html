@@ -27,13 +27,13 @@
                   <ion-icon name="trending-up" color="secondary"></ion-icon>
                 </ion-col>
                 <ion-col style="padding:0px;">
-                  <p style="color:#32db64">{{coin.percent_change_24h}}%</p>
+                  <p [ngStyle]="{'color': coin.color}">{{coin.percent_change_24h}}%</p>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col style="padding:0px;"></ion-col>
                 <ion-col style="padding:0px;">
-                  <p style="color:#32db64">{{coin.point_change_24h}}</p>
+                  <p [ngStyle]="{'color': coin.color}">{{coin.point_change_24h}}</p>
                 </ion-col>
               </ion-row>
             </ion-grid>
