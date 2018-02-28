@@ -18,10 +18,10 @@ export class ContactPage {
 
       type: 'line',
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["Feb 21", "Feb 22", "Feb 23", "Feb 24", "Feb 25", "Feb 26", "Feb 27"],
         datasets: [
           {
-            label: "My First dataset",
+            label: "Price USD",
             fill: false,
             lineTension: 0.1,
             backgroundColor: "rgba(75,192,192,0.4)",
@@ -39,7 +39,7 @@ export class ContactPage {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [9000, 9231, 8745, 9456, 10430, 10670, 10980],
             spanGaps: false,
           }
         ]
