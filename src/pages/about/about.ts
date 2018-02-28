@@ -30,6 +30,8 @@ export class AboutPage {
           console.log(data);
           data.price_usd = currFormatter.format(data.price_usd);
           data.color = data.point_change_24h < 0 ? '#f53d3d' : '#32db64';
+          data.trending_icon = data.point_change_24h < 0 ? 'trending-down' : 'trending-up';
+          data.color_name = data.point_change_24h < 0 ? 'danger' : 'secondary';
           data.point_change_24h = currFormatter.format(data.point_change_24h);
           this.coins.push(data);
         });

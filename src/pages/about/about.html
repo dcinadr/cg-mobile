@@ -24,7 +24,7 @@
             <ion-grid >
               <ion-row>
                 <ion-col style="padding:0px;">
-                  <ion-icon name="trending-up" color="secondary"></ion-icon>
+                  <ion-icon name="{{coin.trending_icon}}" color="{{coin.color_name}}"></ion-icon>
                 </ion-col>
                 <ion-col style="padding:0px;">
                   <p [ngStyle]="{'color': coin.color}">{{coin.percent_change_24h}}%</p>
