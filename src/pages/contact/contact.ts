@@ -14,9 +14,34 @@ import { Chart } from 'chart.js';
 
   }
 
+  openCoinModal() {
+    let modal = this.modalCtrl.create(ModalCoinPage);
+    modal.onDidDismiss(data => {
+      if (!data) {
+        return;
+      }
+      this.createLineChart(data);
+    });
+    modal.present();
+  }
+
   openOverlayModal() {
     let modal = this.modalCtrl.create(ModalOverlayPage);
     modal.onDidDismiss(data => {
+      if (!data) {
+        return;
+      }
+      this.createLineChart(data);
+    });
+    modal.present();
+  }
+
+  openPeriodModal() {
+    let modal = this.modalCtrl.create(ModalPeriodPage);
+    modal.onDidDismiss(data => {
+      if (!data) {
+        return;
+      }
       this.createLineChart(data);
     });
     modal.present();
@@ -123,13 +148,47 @@ import { Chart } from 'chart.js';
 @Component({
   templateUrl: 'coinModal.html'
 })
-export class ModalOverlayPage {
+export class ModalCoinPage {
   constructor(
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController
   ) {
     
+  }
+
+  dismiss(data) {
+    this.viewCtrl.dismiss(data);
+  }
+}
+
+@Component({
+  templateUrl: 'overlayModal.html'
+})
+export class ModalOverlayPage {
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController
+  ) {
+
+  }
+
+  dismiss(data) {
+    this.viewCtrl.dismiss(data);
+  }
+}
+
+@Component({
+  templateUrl: 'periodModal.html'
+})
+export class ModalPeriodPage {
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController
+  ) {
+
   }
 
   dismiss(data) {

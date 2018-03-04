@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage, ModalOverlayPage } from '../pages/contact/contact';
+import { ContactPage, ModalCoinPage, ModalOverlayPage, ModalPeriodPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -18,7 +18,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    ModalOverlayPage
+    ModalOverlayPage,
+    ModalCoinPage,
+    ModalPeriodPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    ModalOverlayPage
+    ModalOverlayPage,
+    ModalCoinPage,
+    ModalPeriodPage
   ],
   providers: [
     StatusBar,

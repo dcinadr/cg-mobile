@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Available Periods
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <button ion-item (click)="dismiss('7d')">
+            7 days
+        </button>
+        <button ion-item (click)="dismiss('3d')">
+            3 days
+        </button>
+        <button ion-item (click)="dismiss('24h')">
+            24 hours
+        </button>
+    </ion-list>
+</ion-content>
