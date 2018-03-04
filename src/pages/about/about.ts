@@ -22,18 +22,18 @@ export class AboutPage {
 
     let currFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
 
-    db.collection('coins')
+    db.collection('mobile')
       .onSnapshot(snapshot => {
         this.coins = [];
-        snapshot.docs.forEach(doc => {
-          let data = doc.data();
+        let data = snapshot.docs.filter(x => x.id == 'coins')[0].data();
+        data.all.forEach(coin => {
           console.log(data);
-          data.price_usd = currFormatter.format(data.price_usd);
-          data.color = data.point_change_24h < 0 ? '#f53d3d' : '#32db64';
-          data.trending_icon = data.point_change_24h < 0 ? 'trending-down' : 'trending-up';
-          data.color_name = data.point_change_24h < 0 ? 'danger' : 'secondary';
-          data.point_change_24h = currFormatter.format(data.point_change_24h);
-          this.coins.push(data);
+          coin.price_usd = currFormatter.format(coin.price_usd);
+          coin.color = coin.point_change_24h < 0 ? '#f53d3d' : '#32db64';
+          coin.trending_icon = coin.point_change_24h < 0 ? 'trending-down' : 'trending-up';
+          coin.color_name = coin.point_change_24h < 0 ? 'danger' : 'secondary';
+          coin.point_change_24h = currFormatter.format(coin.point_change_24h);
+          this.coins.push(coin);
         });
       });
   }

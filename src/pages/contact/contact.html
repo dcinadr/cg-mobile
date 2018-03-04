@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Insights
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,10 +9,23 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      BTC
+      {{coinName}}
     </ion-card-header>
     <ion-card-content>
       <canvas #lineCanvas></canvas>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button outline block (click)="openOverlayModal()">Coin</button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button outline block>Overlay</button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button outline block>Period</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
