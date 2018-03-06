@@ -6,14 +6,16 @@ import { Chart } from 'chart.js';
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-  export class ContactPage {
+export class ContactPage {
   @ViewChild('lineCanvas') lineCanvas;
   lineChart: any;
   coinName: any;
-  chartData = {};
+  chartData: any;
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
     this.chartData = {
       coinName: 'BTC',
+      overlay: '',
+      period: '7d',
       labels: ["2/21", "2/22", "2/23", "2/24", "2/25", "2/26", "2/27"],
       dataSet1: {
         data: [9688.62, 9597.99, 10300, 10566.57, 10307.27, 10895.92, 11000]
@@ -22,7 +24,8 @@ import { Chart } from 'chart.js';
         display: false,
         label: '',
         data: [],
-        type: 'bar'
+        type: 'bar',
+        yAxisID: 'yAxis2'
       }
     };
   }
@@ -44,17 +47,8 @@ import { Chart } from 'chart.js';
       if (!data) {
         return;
       }
-      let chartData: any = {};
-      switch (data) {
-        case 'sentiment':
-          chartData.dataSet2 = {
-            display: true,
-            label: 'Average Sentiment',
-            data: [0.8, 0.5, 0.6, 0.4, 0.5, 0.7, 0.6],
-            type: 'bar'
-          }
-          break;  
-      }
+      this.chartData.overlay = data;
+      let chartData = this.getData2(this.chartData.coinName, this.chartData.overlay, this.chartData.period);
       this.chartData = Object.assign(this.chartData, chartData);
       this.createLineChart(this.chartData);
     });
@@ -67,9 +61,58 @@ import { Chart } from 'chart.js';
       if (!data) {
         return;
       }
+      this.chartData.period = data;
+      let chartData = this.getData2(this.chartData.coinName, this.chartData.overlay, this.chartData.period);
+      this.chartData = Object.assign(this.chartData, chartData);
       this.createLineChart(this.chartData);
     });
     modal.present();
+  }
+
+  getData2(coin, overlay, period) {
+    let chartData: any = {};
+    if (coin == 'BTC') {
+      switch (overlay) {
+        case 'sentiment':
+          chartData.labels = period == '7d' ? ["2/21", "", "2/22", "", "2/23", "", "2/24", "", "2/25", "", "2/26", "", "2/27", ""] : period == '3d' ? ["2/25", "2/26", "2/27"] : ["10pm", "6pm", "2pm", "10am", "6am", "2am"];  
+          chartData.dataSet2 = {
+            display: true,
+            label: 'Average Sentiment',
+            
+            data: period == '7d' ? [0.8, 0.5, 0.6, 0.4, 0.5, 0.7, 0.6, 0.8, 0.5, 0.6, 0.4, 0.5, 0.7, 0.6] : period == '3d' ? [0.8, 0.6, 0.5, 0.4, 0.6, 0.8] : [0.8, 0.6, 0.5, 0.4, 0.1, 0.8],
+            type: 'bar',
+            yAxisID: 'yAxis2'
+          };
+          break;
+        case 'cgValue':
+          chartData.dataSet2 = {
+            display: true,
+            label: 'CoinGenius Value',
+            data: [9600, 9610, 10100, 10400, 10350, 10200, 10900],
+            type: 'line',
+            yAxisID: 'yAxis1'
+          };
+          break;
+        case 'stability':
+          chartData.dataSet2 = {
+            display: true,
+            label: 'Stability Rating',
+            data: [7, 7.2, 6.8, 8, 7.8, 8.1, 8.5],
+            type: 'bar',
+            yAxisID: 'yAxis2'
+          };
+          break;
+        default:
+          chartData.dataSet2 = {
+            display: false,
+            label: '',
+            data: [],
+            type: 'bar',
+            yAxisID: 'yAxis2'
+          }
+      }
+    }
+    return chartData;
   }
 
   getLineChartConifgData(graphData) {
@@ -113,18 +156,20 @@ import { Chart } from 'chart.js';
       type: 'line'
     });
     if (graphData.dataSet2.display) {
-      yAxesConfigData.push({
-        id: 'yAxis2',
-        ticks: {
-          steps: 10,
-          stepValue: 10,
-          beginAtZero: true
-        },
-        position: 'right',
-        gridLines: {
-          display: false
-        }
-      });
+      if (graphData.dataSet2.yAxisID == 'yAxis2') {
+        yAxesConfigData.push({
+          id: 'yAxis2',
+          ticks: {
+            steps: 10,
+            stepValue: 10,
+            beginAtZero: true
+          },
+          position: 'right',
+          gridLines: {
+            display: false
+          }
+        });
+      }
       dataSetData.push({
         label: graphData.dataSet2.label,
         fill: false,
@@ -146,7 +191,7 @@ import { Chart } from 'chart.js';
         pointHitRadius: 10,
         data: graphData.dataSet2.data,
         spanGaps: false,
-        yAxisID: 'yAxis2',
+        yAxisID: graphData.dataSet2.yAxisID,
         showLine: true
       });
     }
@@ -190,7 +235,7 @@ export class ModalCoinPage {
     public params: NavParams,
     public viewCtrl: ViewController
   ) {
-    
+
   }
 
   dismiss(data) {
