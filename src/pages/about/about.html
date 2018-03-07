@@ -17,6 +17,7 @@
           <ion-col col-8>
             <h2>
               <b>{{coin.name}}</b>
+              <ion-icon *ngIf="coin.show_flag" name="flag" color="primary"></ion-icon>
             </h2>
             <h3>{{coin.price_usd}}</h3>
           </ion-col>
