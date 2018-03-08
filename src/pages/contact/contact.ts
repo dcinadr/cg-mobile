@@ -81,12 +81,14 @@ export class ContactPage {
       };
       switch (overlay) {
         case 'sentiment':
+          let sentimentValues = period == '7d' ? [0.8, 0.5, -0.3, 0.1, 0.2, 0.02, -0.05, 0.4, -0.6, 0.1, -0.08, 0.03, 0.2, 0.1] : period == '3d' ? [0.6, 0.1, -0.13, -0.43, -0.25, 0.14, 0.7, 0.6, -0.21, 0.02, 0.036, -0.07, 0.2] : [0.46, 0.32, -0.5, 0.23, 0.12, -0.04, 0.6, 0.17, -0.1, -0.04, 0.1];
           chartData.dataSet2 = {
             display: true,
             label: 'Average Sentiment',
-            data: period == '7d' ? [0.8, 0.5, -0.3, 0.1, 0.2, 0.02, -0.05, 0.4, -0.6, 0.1, -0.08, 0.03, 0.2, 0.1] : period == '3d' ? [0.6, 0.1, -0.13, -0.43, -0.25, 0.14, 0.7, 0.6, -0.21, 0.02, 0.036, -0.07, 0.2] : [0.46, 0.32, -0.5, 0.23, 0.12, -0.04, 0.6, 0.17, -0.1, -0.04, 0.1],
+            data: sentimentValues,
             type: 'bar',
-            yAxisID: 'yAxis2'
+            yAxisID: 'yAxis2',
+            backgroundColor: this.getSentimentColors(sentimentValues)
           };
           break;
         case 'cgValue':
@@ -123,19 +125,21 @@ export class ContactPage {
       };
       switch (overlay) {
         case 'sentiment':
+          let sentimentValues = period == '7d' ? [0.8, 0.5, -0.3, 0.1, 0.2, 0.02, -0.05, 0.4, -0.6, 0.1, -0.08, 0.03, 0.2, 0.1] : period == '3d' ? [0.6, 0.1, -0.13, -0.43, -0.25, 0.14, 0.7, 0.6, -0.21, 0.02, 0.036, -0.07, 0.2] : [0.46, 0.32, -0.5, 0.23, 0.12, -0.04, 0.6, 0.17, -0.1, -0.04, 0.1];  
           chartData.dataSet2 = {
             display: true,
             label: 'Average Sentiment',
-            data: period == '7d' ? [0.8, 0.5, -0.3, 0.1, 0.2, 0.02, -0.05, 0.4, -0.6, 0.1, -0.08, 0.03, 0.2, 0.1] : period == '3d' ? [0.6, 0.1, -0.13, -0.43, -0.25, 0.14, 0.7, 0.6, -0.21, 0.02, 0.036, -0.07, 0.2] : [0.46, 0.32, -0.5, 0.23, 0.12, -0.04, 0.6, 0.17, -0.1, -0.04, 0.1],
+            data: sentimentValues,
             type: 'bar',
-            yAxisID: 'yAxis2'
+            yAxisID: 'yAxis2',
+            backgroundColor: this.getSentimentColors(sentimentValues)
           };
           break;
         case 'cgValue':
           chartData.dataSet2 = {
             display: true,
             label: 'CoinGenius Value',
-            data: period == '7d' ? [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350, 10200, 10900] : period == '3d' ? [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350, 10200] : [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350],
+            data: period == '7d' ? [872.88, 869.33, 876.23, 861.37, 855.99, 871.78, 861.74, 851.1, 854.31, 858.1, 852.34, 858.21, 862.74, 868.99] : period == '3d' ? [863.75, 860.1, 861, 862.1, 854, 847, 851.21, 858.25, 861.74, 863.76, 861.99, 851.5, 851.83] : [862.98, 863.84, 864.31, 861.29, 861.65, 863.64, 860.98, 857.01, 856.99, 854.86, 850.06],
             type: 'line',
             yAxisID: 'yAxis1'
           };
@@ -160,22 +164,26 @@ export class ContactPage {
       }
     }
     if (coin == 'LTC') {
-      chartData.dataSet1 = { data: [2000, 9597.99, 10300, 10566.57, 10307.27, 10895.92, 11000, 9688.62, 9597.99, 10300, 10566.57, 10307.27, 10895.92, 11000] };
+      chartData.dataSet1 = {
+        data: period == '7d' ? [218.86, 207.46, 202.12, 207.13, 209.2, 206.78, 212, 214.52, 212.97, 207.8, 208.74, 210.61, 211.33, 208.77] : period == '3d' ? [207.8, 208.9, 208.74, 212.97, 210.61, 213.45, 211.33, 210.71, 208.77, 203.59, 198, 196.63, 196.63] : [208.02, 208.45, 208.78, 208.63, 207.01, 202.9, 201.86, 203.79, 201.49, 197.02, 195.47],
+      };
       switch (overlay) {
         case 'sentiment':
+          let sentimentValues = period == '7d' ? [0.8, 0.5, -0.3, 0.1, 0.2, 0.02, -0.05, 0.4, -0.6, 0.1, -0.08, 0.03, 0.2, 0.1] : period == '3d' ? [0.6, 0.1, -0.13, -0.43, -0.25, 0.14, 0.7, 0.6, -0.21, 0.02, 0.036, -0.07, 0.2] : [0.46, 0.32, -0.5, 0.23, 0.12, -0.04, 0.6, 0.17, -0.1, -0.04, 0.1];    
           chartData.dataSet2 = {
             display: true,
             label: 'Average Sentiment',
-            data: period == '7d' ? [0.8, 0.5, 0.6, 0.4, -0.5, 0.7, 0.6, -0.8, 0.5, 0.6, -0.4, 0.5, 0.7, -0.6] : period == '3d' ? [0.8, 0.6, 0.5, 0.4, 0.6, 0.8, 0.8, 0.6, 0.5, 0.4, 0.6, 0.8, 0.2] : [0.8, 0.6, 0.5, 0.4, 0.1, 0.8, 0.8, 0.6, 0.5, 0.4, 0.1],
+            data: sentimentValues,
             type: 'bar',
-            yAxisID: 'yAxis2'
+            yAxisID: 'yAxis2',
+            backgroundColor: this.getSentimentColors(sentimentValues)
           };
           break;
         case 'cgValue':
           chartData.dataSet2 = {
             display: true,
             label: 'CoinGenius Value',
-            data: period == '7d' ? [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350, 10200, 10900] : period == '3d' ? [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350, 10200] : [9600, 9610, 10100, 10400, 10350, 10200, 10900, 9600, 9610, 10100, 10400, 10350],
+            data: period == '7d' ? [212.86, 205.46, 203.12, 208.13, 207.2, 211.78, 213, 211.52, 218.97, 207.8, 209.74, 211.61, 210.33, 211.77] : period == '3d' ? [208.8, 208.9, 210.74, 211.97, 212.61, 212.45, 211.33, 209.71, 204.77, 201.59, 197, 196.63, 196.63] : [208.34, 208.56, 208.72, 207.63, 203.01, 201.9, 202.86, 202.79, 199.49, 196.02, 193.47],
             type: 'line',
             yAxisID: 'yAxis1'
           };
@@ -200,6 +208,18 @@ export class ContactPage {
       }
     }
     return chartData;
+  }
+
+  getSentimentColors(sentimentList) {
+    let sentimentColors = [];
+    sentimentList.forEach(sentiment => {
+      if (sentiment < 0) {
+        sentimentColors.push('rgba(222,64,55, .7');
+      } else {
+        sentimentColors.push('rgba(33,173,61,.5)');
+      }
+    });
+    return sentimentColors;
   }
 
   getLineChartConifgData(graphData) {
@@ -261,7 +281,7 @@ export class ContactPage {
         label: graphData.dataSet2.label,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: "rgba(222,146,82,0.8)",
+        backgroundColor: graphData.dataSet2.backgroundColor ? graphData.dataSet2.backgroundColor : "rgba(222,146,82,0.8)",
         borderColor: "rgba(222,146,82,1)",
         borderCapStyle: 'butt',
         borderDash: [],
